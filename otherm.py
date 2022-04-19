@@ -153,9 +153,11 @@ def print_output(molecule):
     g_ha = molecule.g / (Constants.ha_to_j * Constants.n_a)
 
     print("{:<50s}{:>33}".format('For convenience E, H, G in Hartrees', ''))
-    print(e_elec_ha, h_ha, g_ha, sep=',')
+    # print(e_elec_ha, h_ha, g_ha, sep=',')
+    print("{:<50s}{:>33}".format('Total Electronic energy (Ha)', e_elec_ha))
+    print("{:<50s}{:>33}".format('Total Enthalpy (Ha)', h_ha))
+    print("{:<50s}{:>33}".format('Gibbs Free energy (Ha)', g_ha))
     print("----------------------------------------------------------------------------------")
-
     return None
 
 
