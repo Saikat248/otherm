@@ -152,12 +152,15 @@ def print_output(molecule):
     h_ha = molecule.h / (Constants.ha_to_j * Constants.n_a)
     g_ha = molecule.g / (Constants.ha_to_j * Constants.n_a)
 
-    print("{:<50s}{:>33}".format('For convenience E, H, G in Hartrees', ''))
-    # print(e_elec_ha, h_ha, g_ha, sep=',')
+    print("{:<50s}{:>33}".format('For convenience E, H, G in Hartrees', ''+'\n'))
+    # print('\n')
     print("{:<50s}{:>33}".format('Total Electronic energy (Ha)', e_elec_ha))
     print("{:<50s}{:>33}".format('Total Enthalpy (Ha)', h_ha))
-    print("{:<50s}{:>33}".format('Gibbs Free energy (Ha)', g_ha))
+    print("{:<50s}{:>33}".format('Total Gibbs Free energy (Ha)', g_ha))
+
+    # print(e_elec_ha, h_ha, g_ha, sep=',')
     print("----------------------------------------------------------------------------------")
+
     return None
 
 
@@ -616,7 +619,7 @@ def calc_igm_s_vib(molecule, temp):
     for freq in molecule.real_vib_freqs():
         x = freq * Constants.c_in_cm * Constants.h / (Constants.k_b * temp)
         s += Constants.r * ((x / (np.exp(x) - 1.0)) - np.log(1.0 - np.exp(-x)))
-
+    print('Vib Entropy IGM, = ', s)
     return s
 
 
@@ -640,7 +643,7 @@ def calc_truhlar_s_vib(molecule, temp, shift_freq):
         x = freq * Constants.c_in_cm * Constants.h / Constants.k_b
         s += Constants.r * (((x / temp) / (np.exp(x / temp) - 1.0)) -
                                 np.log(1.0 - np.exp(-x / temp)))
-
+    print('Vib Entropy Truhlar, = ', s)
     return s
 
 
@@ -677,7 +680,7 @@ def calc_grimme_s_vib(molecule, temp, omega_0, alpha):
         w = 1.0 / (1.0 + (omega_0 / freq)**alpha)
 
         s += w * s_v + (1.0 - w) * s_r
-
+    print('Vib Entropy Grimme, = ', s)
     return s
 
 
@@ -713,7 +716,8 @@ def calc_entropy(molecule, method='grimme', temp=298.15, ss='1M',
 
     else:
         raise NotImplementedError
-
+    print('Translational Entropy = ', s_trans)
+    print('Rotational Entropy= ', s_rot)
     return s_trans + s_rot + s_vib
 
 
