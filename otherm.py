@@ -157,6 +157,7 @@ def print_output(molecule):
     print("{:<50s}{:>33}".format('Total Electronic energy (Ha)', e_elec_ha))
     print("{:<50s}{:>33}".format('Total Enthalpy (Ha)', h_ha))
     print("{:<50s}{:>33}".format('Total Gibbs Free energy (Ha)', g_ha))
+    print("{:<50s}{:>33}".format('Correction to Gibbs Free energy G-E(el)  (Ha)', g_ha - e_elec_ha))
 
     # print(e_elec_ha, h_ha, g_ha, sep=',')
     print("----------------------------------------------------------------------------------")
